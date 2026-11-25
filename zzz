@@ -1,0 +1,64 @@
+<script>
+    document.getElementById('oblicz').addEventListener('click', function() {
+        let szerokosc = parseFloat(document.getElementById('szerokosc').value);
+        let dlugosc = parseFloat(document.getElementById('dlugosc').value);
+        let typPaneli = document.querySelector('input[name="typ"]:checked').value;
+        let cena = 0;
+
+        if (typPaneli === 'laminowane') cena = 12;
+        else if (typPaneli === 'winylowe') cena = 14;
+        else if (typPaneli === 'podlogowa') cena = 18;
+
+        if (isNaN(szerokosc) || isNaN(dlugosc)) {
+            document.getElementById('wynik').innerText = "Wprowadź poprawne dane";
+        } else {
+            let pole = szerokosc * dlugosc;
+            let koszt = pole * cena;
+            document.getElementById('wynik').innerText = "Pole powierzchni pomieszczenia : " + pole + ", koszt ramowy " + koszt;
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById('dodajPrzycisk').addEventListener('click', function() {
+        let nowyPrzycisk = document.createElement('button');
+        nowyPrzycisk.innerText = "Dodaj";
+        nowyPrzycisk.style.width = "70px";
+        nowyPrzycisk.style.height = "25px";
+        document.querySelector('div').appendChild(nowyPrzycisk);
+    });
+</script>
+
+
+
+
+
+
+<script>
+    let licznik = 1;
+
+    document.getElementById('dodajElement').addEventListener('click', function() {
+        licznik++;
+        let li = document.createElement('li');
+        li.innerText = "Element " + licznik;
+        document.getElementById('lista').appendChild(li);
+    });
+
+    document.getElementById('usunElement').addEventListener('click', function() {
+        let lista = document.getElementById('lista');
+        if (lista.lastElementChild) {
+            lista.removeChild(lista.lastElementChild);
+            licznik--;
+        } else {
+            alert("Nie możesz usunąć czegoś, co nie istnieje");
+        }
+    });
+</script>
+
